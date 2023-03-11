@@ -1,0 +1,17 @@
+*** ldmain.c	Mon Apr 28 16:22:40 1997
+--- \djgpp\gnu\binutl-2.7\ld\ldmain.c	Sun Apr 27 10:42:28 1997
+***************
+*** 317,324 ****
+--- 317,328 ----
+    else
+      output_bfd->flags |= EXEC_P;
+  
++   link_info.relocateable = true;
++ 
+    ldwrite ();
+  
++   link_info.relocateable = false;
++ 
+    if (config.map_file != NULL)
+      lang_map ();
+    if (link_info.notice_all)

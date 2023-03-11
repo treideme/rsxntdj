@@ -1,0 +1,85 @@
+*asm:
+
+
+*asm_final:
+
+
+*cpp:
+%{Zdll:-D__DLL__} %{!Zrsx32:-D__WIN32__ -D_WIN32 -D__RSXNT__} %{Zrsx32:-D__RSX32__  -D__RSXNT__} %{Zcrtdll=crtrs:-D__CRTRSXNT__%{Zrsx32:%e-Zcrtdll and -Zrsx32 are incompatible}} \
+%{posix:-D_POSIX_SOURCE} %{Zmt:-D__MT__} %{pg:-D__GPROF__} %{mepilogue:-D__EPILOGUE__}
+
+*cc1:
+-fstack-check
+
+*cc1plus:
+-fstack-check
+
+*endfile:
+
+
+*link:
+%{Zexe} %{Zstack*} %{Zmap*} %{Zomf:%{Zdll}}%{!o*:-o %b.%{Zdll:dll}%{!Zdll:exe}} %{static:%{Zcrtdll=*:%e-static and -Zcrtdll are incompatible}}%{Zdll:%{Zexe:%e-Zdll and -Zexe are incompatible}}%{Zso:%{!Zsys:%e-Zso requires -Zsys}}%{Zso:%{!Zdll:%e-Zso requires -Zdll}}%{Zno-rte:%{!Zdll:%e-Zno-rte requires -Zdll}}%{Zno-rte:%{Zsys:%e-Zno-rte and -Zsys are incompatible}}%{Zno-rte:%{Zso:%e-Zno-rte and -Zso are incompatible}}%{Zno-rte:%{Zcrtdll=*:%e-Zcrtdll and -Zno-rte are incompatible}}%{Zno-rte:%{Zmt:%e-Zmt and
+ -Zno-rte are incompatible}}%{Zsys:%{Zcrtdll=*:%e-Zcrtdll and -Zsys are incompatible}}%{Zsys:%{Zbsd-signals:%e-Zbsd-signals and -Zsys are incompatible}}%{Zsys:%{Zsysv-signals:%e-Zsysv-signals and -Zsys are incompatible}}%{Zbsd-signals:%{Zsysv-signals:%e-Zbsd-signals and -Zsysv-signals are incompatible}}%{Zsmall-conv:%{Zcrtdll=*:%e-Zsmall-conv and -Zcrtdll are incompatible}}
+
+*link_command:
+%{!fsyntax-only: \
+ %{!c:%{!M:%{!MM:%{!E:%{!S:%{!Zomf:ld}%{Zomf:emxomfld}\
+                        %l %X %{o*} %{A} %{d} %{e*} %{m} %{N} %{n} \
+                        %{r} %{s} %{t} %{u*} %{x} %{z} %{Z}\
+                        %{!A:%{!nostdlib:%{!nostartfiles:%S}}}\
+                        %{static:} %{L*} %D %o\
+                        %{fbounds-checking:-lcheck}\
+                        %{!nostdlib:%{!nodefaultlibs:\
+                          -lalias \
+                          %{Zcrtdll=*:-lstati -l%* -lkrn32 -lusr32 -lgdi32 %{pg:_p} -lemx2}\
+                          %{!Zcrtdll:%{!Zcrtdll=*:%G %L %G\
+                             %{Zno-rte:-lkrn32 -usr32 -lgdi32 %{pg:_p}}\
+                             %{!Zno-rte:%{Zsys:-lsys -lkrn32 -lusr32 -lgdi32}\
+                                        %{!Zsys:-lemx -lkrn32 -lusr32 -lgdi32 %{pg:_p} -lemx2}}}}\
+                          %{Zomf:-lend}}}\
+                        %{!A:%{!nostdlib:%{!nostartfiles:%E}}}\
+                        -Trsxnt.djl %{T*}}}}}}}
+%{!c:%{!M:%{!MM:%{!E:%{!S:ntbind %{!g:-remove} %{o*:%*}%{!o*:%b.%{Zdll:dll}%{!Zdll:exe}} %{Zrsx32: -s dosstub.rsx }}}}}}
+
+*lib:
+%{g*:-lg} %{p:-lc_p}%{pg:-lc_p} -lc %{!Zdll:-lmain} %{Zdll:-ldll} %{Zdll:%{Zso:-ldllso}%{Zno-rte:-ldllno}%{!Zso:%{!Zno-rte:-ldllrt}}}%{!Zdll:-lc_app%{pg:_p}} %{p:-lc_p}%{pg:-lc_p} -lc
+
+*libgcc:
+-lgcc%{pg:_p}
+
+*startfile:
+%{Zdll:dll0w32%O%s}%{!Zdll:%{pg:gcrt0%O%s}%{!pg:%{pn:gcrt0%O%s}%{!pn:%{p:mcrt0%O%s}%{!p:crt0w32%O%s}}} %{Zsysv-signals:sigsysv%O%s} %{Zbsd-signals:sigbsd%O%s} %{Zbin-files:binmode%O%s}%{Zsmall-conv:smallcnv%O%s}}
+
+*switches_need_spaces:
+
+
+*signed_char:
+%{funsigned-char:-D__CHAR_UNSIGNED__}
+
+*predefines:
+-D__32BIT__ -D__EMX__ -Di386  -Asystem(unix) -Asystem(emx) -Acpu(i386) -Amachine(i386)
+
+*cross_compile:
+0
+
+*version:
+2.8.1
+
+*multilib:
+st !Zmt;mt Zmt;
+
+*multilib_defaults:
+
+
+*multilib_extra:
+
+
+*multilib_matches:
+Zmts Zmt;Zmtd Zmt;Zmt Zmt;
+
+*cpp_cpu:
+-Di386  -Asystem(unix) -Acpu(i386) -Amachine(i386) %{mcpu=i486:-Di486} %{m486:-Di486} %{mpentium:-Dpentium -Di586} %{mcpu=pentium:-Dpentium -Di586} %{mpentiumpro:-Dpentiumpro -Di686} %{mcpu=pentiumpro:-Dpentiumpro -Di686}
+
+*cc1_cpu:
+%{!mcpu*: %{m386:-mcpu=i386 -march=i386} %{mno-486:-mcpu=i386 -march=i386} %{m486:-mcpu=i486 -march=i486} %{mno-386:-mcpu=i486 -march=i486} %{mno-pentium:-mcpu=i486 -march=i486} %{mpentium:-mcpu=pentium} %{mno-pentiumpro:-mcpu=pentium} %{mpentiumpro:-mcpu=pentiumpro}}
+

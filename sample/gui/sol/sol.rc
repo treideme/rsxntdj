@@ -1,0 +1,43 @@
+#include "sol.h"
+
+SOLO ICON "sol.ico"
+
+SOLO MENU
+BEGIN
+        POPUP "&Spiel "
+        BEGIN
+                MENUITEM "&Neues Spiel",IDM_NEU
+                MENUITEM "&Ende Sol",   IDM_ENDE
+        END
+        MENUITEM "&Zurück! ",           IDM_UNDO
+        POPUP "&Menü "
+        BEGIN
+                MENUITEM "&Deutsch" ,   IDM_DEUTSCH
+                MENUITEM "&Englisch" ,  IDM_ENGLISCH
+        END
+        POPUP "&Hilfe "
+        BEGIN
+                MENUITEM "&Hilfe",      IDM_HILFE
+                MENUITEM "&Autor",      IDM_AUTOR
+        END
+END
+
+MENU_ENGLISCH MENU
+BEGIN
+        POPUP "&Game "
+        BEGIN
+                MENUITEM "&New Game",   IDM_NEU
+                MENUITEM "&End Sol ",   IDM_ENDE
+        END
+                MENUITEM "&Undo! ",     IDM_UNDO
+        POPUP "&Menu "
+        BEGIN
+                MENUITEM "&German " ,   IDM_DEUTSCH
+                MENUITEM "&English" ,   IDM_ENGLISCH
+        END
+        POPUP "&Help "
+        BEGIN
+                MENUITEM "&Help ",      IDM_HILFE
+                MENUITEM "&About",      IDM_AUTOR
+        END
+END

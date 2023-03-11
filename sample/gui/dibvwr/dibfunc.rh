@@ -1,0 +1,13 @@
+/****************************************************************************
+
+
+dibfunc.rh
+
+produced by Borland Resource Workshop
+
+
+*****************************************************************************/
+
+#define IDB_VGA16	16
+#define BITMAP_8	8
+#define IDB_GRAYINGBITMAP	667

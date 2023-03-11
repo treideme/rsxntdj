@@ -1,0 +1,61 @@
+// Ressourcen-Definition
+
+#include <windows.h>
+#include "winedit.h"
+
+// Hauptmenu
+WINEDIT_HAUPTMENU MENU DISCARDABLE
+BEGIN
+  POPUP "&Datei"
+  BEGIN
+    MENUITEM "&Beenden\tStrg+B",          ID_DATEI_BEENDEN
+  END
+  POPUP "&Bearbeiten"
+  BEGIN
+    MENUITEM "Rückgängig\tStrg+Z",        ID_BEARBEITEN_RUECKGAENGIG
+    MENUITEM SEPARATOR
+    MENUITEM "&Ausschneiden\tStrg+X",     ID_BEARBEITEN_AUSSCHNEIDEN
+    MENUITEM "&Kopieren\tStrg+C",         ID_BEARBEITEN_KOPIEREN
+    MENUITEM "&Einfügen\tStrg+V",         ID_BEARBEITEN_EINFUEGEN
+    MENUITEM "&Löschen\tEntf",            ID_BEARBEITEN_LOESCHEN
+    MENUITEM SEPARATOR
+    MENUITEM "Alles aus&wählen\tStrg+A",  ID_BEARBEITEN_ALLESAUSWAEHLEN
+  END
+  POPUP "&Format"
+  BEGIN
+    MENUITEM "&Fett\tStrg+F",             ID_FORMAT_FETT
+    MENUITEM "&Kursiv\tStrg+K",           ID_FORMAT_KURSIV
+    MENUITEM "&Unterstrichen\tStrg+U",    ID_FORMAT_UNTERSTRICHEN
+    MENUITEM SEPARATOR
+    MENUITEM "&Größer\tStrg+G",           ID_FORMAT_GROESSER
+    MENUITEM "K&leiner\tStrg+L",          ID_FORMAT_KLEINER
+  END
+  POPUP "&?"
+  BEGIN
+    MENUITEM "&Information...",           ID_HILFE_INFO
+  END
+END
+
+// Accelerator-Tabelle
+WINEDIT_ACCELERATORS ACCELERATORS DISCARDABLE
+BEGIN
+  "B",  ID_DATEI_BEENDEN,        VIRTKEY, CONTROL, NOINVERT
+  "F",  ID_FORMAT_FETT,          VIRTKEY, CONTROL, NOINVERT
+  "G",  ID_FORMAT_GROESSER,      VIRTKEY, CONTROL, NOINVERT
+  "K",  ID_FORMAT_KURSIV,        VIRTKEY, CONTROL, NOINVERT
+  "L",  ID_FORMAT_KLEINER,       VIRTKEY, CONTROL, NOINVERT
+  "U",  ID_FORMAT_UNTERSTRICHEN, VIRTKEY, CONTROL, NOINVERT
+END
+
+// Informations-Dialog
+WINEDIT_INFODLG DIALOG DISCARDABLE  90, 45, 165, 79
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "WinEdit -- Information"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CTEXT  "WinEdit -- Einfache Textverarbeitung für Windows 95/NT",
+           101,20,10,120,20
+    CTEXT  "Version 1.00.A für c't, Heft 1/96",102,20,32,120,10
+    DEFPUSHBUTTON  "OK",IDOK,59,60,40,14
+END
+

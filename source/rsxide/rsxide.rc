@@ -1,0 +1,176 @@
+#include <windows.h>
+#include "idmenu.h"
+#include "iddlg.h"
+#include "treeview.h"
+
+RSXIDE  ICON "rsxide.ico"
+RSXIDE1 ICON "rsxide1.ico"
+RSXIDEC ICON "rsxidec.ico"
+RSXIDET ICON "rsxidet.ico"
+
+IDB_DOCUMENT    BITMAP "tvitem.bmp"
+IDB_OPEN_FILE   BITMAP "tvopen.bmp"
+IDB_CLOSED_FILE BITMAP "tvclose.bmp"
+
+bmp_about       BITMAP  "rsxide.bmp"
+IDB_TOOLBAR     BITMAP  "bar.bmp"
+
+#include "rsxide.dlg"
+
+RSXIDE MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New Project...",             IDM_FILE_NEW
+        MENUITEM "&Open Project...",            IDM_FILE_OPEN
+        MENUITEM "&Save Project",               IDM_FILE_SAVE
+        MENUITEM "Save Project &As...",         IDM_FILE_SAVEAS
+        MENUITEM "&Close Project",              IDM_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       IDM_FILE_EXIT
+    END
+
+    POPUP "&Action"
+    BEGIN
+        MENUITEM "&Make All",                   IDM_ACTION_MAKEALL
+        MENUITEM "&Run...",                     IDM_ACTION_RUN
+        MENUITEM "Run &Batch...",               IDM_ACTION_RUNBATCH
+        MENUITEM "&Edit Text...",               IDM_ACTION_EDIT
+        MENUITEM SEPARATOR
+        MENUITEM "Explore &ThisDir",            IDM_ACTION_EXPLORE_DIR
+        MENUITEM "E&xplorer",                   IDM_ACTION_EXPLORER
+    END
+
+    POPUP "&Target"
+    BEGIN
+        MENUITEM "&Make",                       IDM_TARGET_MAKE
+        MENUITEM "&Run",                        IDM_TARGET_RUN
+        MENUITEM "&Debug",                      IDM_TARGET_DEBUG
+        MENUITEM SEPARATOR
+        MENUITEM "&New Target...",              IDM_TARGET_NEW
+        MENUITEM "Remo&ve Target",              IDM_TARGET_REMOVE
+        MENUITEM "Ren&ame Target...",           IDM_TARGET_RENAME
+        MENUITEM "&Remake Target",              IDM_TARGET_REMAKE
+        MENUITEM "&Update dependencies",        IDM_TARGET_DEPS
+    END
+
+    POPUP "&Options"
+    BEGIN
+        MENUITEM "&Make switches...",           IDM_OPTION_MAKE
+        MENUITEM "&Run switches...",            IDM_OPTION_RUN
+        MENUITEM "&Debug switches...",          IDM_OPTION_DEBUG
+        MENUITEM SEPARATOR
+        MENUITEM "&Target switches...",         IDM_OPTION_TARGET
+    END
+
+    POPUP "&Ide"
+    BEGIN
+        MENUITEM "&Editor Defaults...",         IDM_IDE_DEFEDITOR
+        MENUITEM "&Compiler Commands...",       IDM_IDE_DEFCOMPILER
+    END
+
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&Cascade",                    IDM_WINDOW_CASCADE
+    END
+
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Index",                      IDM_HELP_INDEX
+        MENUITEM "&Using Help",                 IDM_HELP_ONHELP
+        MENUITEM SEPARATOR
+        MENUITEM "&About RSXIDE",               IDM_HELP_ABOUT
+    END
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDM_POPUP_FILE          "Project Menu"
+    IDM_POPUP_ACTION        "Action Menu"
+    IDM_POPUP_TARGET        "Target Menu"
+    IDM_POPUP_OPTION        "Target Options"
+    IDM_POPUP_IDE           "Ide options"
+    IDM_POPUP_WINDOW        "Windows"
+    IDM_POPUP_HELP          "Help"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDM_FILE_NEW            "Create a new project"
+    IDM_FILE_OPEN           "Open existing project"
+    IDM_FILE_SAVE           "Save current project"
+    IDM_FILE_SAVEAS         "Saves project with new name"
+    IDM_FILE_CLOSE          "Close current project"
+    IDM_FILE_EXIT           "Quit the program, prompting for save of unsaved project"
+    IDM_ACTION_MAKEALL      "Make all targets in this project"
+    IDM_ACTION_RUN          "Runs a program"
+    IDM_ACTION_RUNBATCH     "Runs a program in the IDE window"
+    IDM_ACTION_EDIT         "Calls the editor"
+    IDM_ACTION_EXPLORE_DIR  "Explore current Directory"
+    IDM_ACTION_EXPLORER     "Run Explorer"
+    IDM_TARGET_MAKE         "Make Target"
+    IDM_TARGET_RUN          "Run Target"
+    IDM_TARGET_DEBUG        "Debug Target"
+    IDM_TARGET_NEW          "New Target"
+    IDM_TARGET_REMOVE       "Remove Target"
+    IDM_TARGET_RENAME       "Rename Target"
+    IDM_TARGET_REMAKE       "Rebuild the Target"
+    IDM_TARGET_DEPS         "Inserts dependencies (c cpp: h) in the makefile"
+    IDM_OPTION_MAKE         "Make options"
+    IDM_OPTION_RUN          "Run options"
+    IDM_OPTION_DEBUG        "Debug options"
+    IDM_OPTION_TARGET       "Target options"
+    IDM_IDE_DEFEDITOR       "Default Editor"
+    IDM_IDE_DEFCOMPILER     "Default Compiler Switches"
+    IDM_WINDOW_CASCADE      "Order all Windows"
+    IDM_HELP_INDEX          "Help Index"
+    IDM_HELP_ONHELP         "Help on help"
+    IDM_HELP_ABOUT          "About rsx-ide"
+    IDM_FILE_FILE1          "Opens this project file"
+    IDM_FILE_FILE2          "Opens this project file"
+    IDM_FILE_FILE3          "Opens this project file"
+    IDM_FILE_FILE4          "Opens this project file"
+END
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION 1,13,00,0
+PRODUCTVERSION 1,13,0,0
+FILEOS VOS__WINDOWS32
+FILETYPE VFT_APP
+
+BEGIN
+        BLOCK "VarFileInfo"
+        BEGIN
+                VALUE "Translation",
+                        0x0409, 0x04e4,
+                        0x0407, 0x04e4
+        END
+
+        BLOCK "StringFileInfo"
+        BEGIN
+                BLOCK "040904e4"
+                BEGIN
+                        VALUE "CompanyName", "RSX Software"
+                        VALUE "FileDescription", "RSXIDE 1.13 - IDE für GNU-C/C++"
+                        VALUE "FileVersion", "1.13.00"
+                        VALUE "InternalName", "RSXIDE"
+                        VALUE "LegalCopyright", "Copyright (c) Rainer Schnitker 1996"
+                        VALUE "OrginalFilename", "RSXIDE.EXE"
+                        VALUE "ProductName", "RSXIDE 1.13"
+                        VALUE "ProductVersion", "1.13"
+                END
+
+                BLOCK "040704e4"
+                BEGIN
+                        VALUE "CompanyName", "RSX Software"
+                        VALUE "FileDescription", "RSXIDE 1.13 - IDE for GNU-C/C++"
+                        VALUE "FileVersion", "1.13.00"
+                        VALUE "InternalName", "RSXIDE"
+                        VALUE "LegalCopyright", "Copyright (c) Rainer Schnitker 1996"
+                        VALUE "OrginalFilename", "RSXIDE.EXE"
+                        VALUE "ProductName", "RSXIDE 1.13"
+                        VALUE "ProductVersion", "1.13"
+                END
+        END
+END
+

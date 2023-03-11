@@ -1,0 +1,6 @@
+#include <windows.h>
+#include "rsxwbind.h"
+
+RSXWBIND ICON "rsxwbind.ico"
+
+#include "rsxwbind.dlg"

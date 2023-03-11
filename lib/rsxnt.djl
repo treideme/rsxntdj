@@ -1,0 +1,60 @@
+OUTPUT_FORMAT("coff-go32")
+ENTRY(__text)
+SECTIONS
+{
+  .text  0x401000 : {
+    *(.text)
+    etext  =  . ; _etext = .; ; __etext = .;
+    . = ALIGN(0x200);
+  }
+  .data  ALIGN(0x1000) : {
+
+    *(.data)
+    *(.gcc_exc)
+
+    ___CTOR_LIST__ = . ;
+    LONG((__CTOR_LIST_END - ___CTOR_LIST__) / 4 - 1)
+    LONG(-1)
+    __CTOR_LIST_START = . ;
+    *(.ctor)
+    __CTOR_LIST_END = . ;
+
+    ___DTOR_LIST__ = . ;
+    LONG((__DTOR_LIST_END - ___DTOR_LIST__) / 4 - 1)
+    LONG(-1)
+    __DTOR_LIST_START = . ;
+    *(.dtor)
+    __DTOR_LIST_END = . ;
+
+    ___crtinit1__ = . ;
+    LONG((__CRT_INIT_END - ___crtinit1__) / 4 - 1)
+    LONG(-1)
+    __CRT_INIT_START = . ;
+    *(.crtinit)
+    __CRT_INIT_END = . ;
+
+    ___crtexit1__ = . ;
+    LONG((__CRT_EXIT_END - ___crtexit1__) / 4 - 1)
+    LONG(-1)
+    __CRT_EXIT_START = . ;
+    *(.crtexit)
+    __CRT_EXIT_END = . ;
+
+    ___eh_frame__ = . ;
+    LONG((__EH_FRAME_END__ - ___eh_frame__) / 4 - 1)
+    LONG(-1)
+    __EH_FRAME_BEGIN__ = . ;
+    *(.eh_fram)
+    __EH_FRAME_END__ = . ;
+
+     edata  =  . ; _edata = .; ; __edata = .;
+     . = ALIGN(0x200);
+  }
+  .bss  SIZEOF(.data) + ADDR(.data) :
+  {
+    *(.bss)
+    *(COMMON)
+     end = . ; _end = .; __end = .;
+     . = ALIGN(0x200);
+  }
+}

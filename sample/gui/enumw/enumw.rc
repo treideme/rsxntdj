@@ -1,0 +1,18 @@
+#include "enumw.h"
+
+ENUMW ICON "enumw.ico"
+
+ENUMW MENU
+BEGIN
+	POPUP "&Enum "
+        BEGIN
+		MENUITEM "&Fonts",      IDM_FONTS
+		MENUITEM "&TrueType",   IDM_FONTFAM
+		MENUITEM "&Windows",    IDM_WINDOWS
+                MENUITEM "&Resources",  IDM_RESOURCES
+        END
+	POPUP "&Hilfe "
+        BEGIN
+		MENUITEM "&About",      IDM_ABOUT
+        END
+END

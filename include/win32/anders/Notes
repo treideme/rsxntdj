@@ -1,0 +1,105 @@
+The excpt.h in this package will overwrite the one supplied
+with mingw32, but nobody uses that anyway.
+
+Standard control and window messages/styles/notifications
+complete (winuser.h).
+
+Common controls complete (including richedit).
+
+The comobject attribute is used when compiling with g++, but
+this is experimental and is included only in
+Antonio Mendes de Olivera Neto's mingw32 dist. I haven't tested
+the latest patches. The last version allowed you to *use* COM objects
+but not to create new C++ comobject classes.
+
+Functions in winuser.h, winbase.h, wingdi.h, winspool.h complete
+except as noted in TODO.
+
+Finished:
+wincrypt.h
+winsock.h
+ddeml.h
+dde.h
+cderr.h
+winioctl.h
+lzexpand.h
+imm.h
+winver.h
+olectlid.h
+wininet.h
+winerror.h
+sql.h
+sqltypes.h
+sqlext.h
+basetyps.h
+cpl.h
+ole.h
+rpcnsi.h
+rpcnsip.h
+rpcdce.h
+rpcnterr.h
+rpcdcep.h
+rpcdce2.h
+rpcproxy.h
+rpcndr.h
+ole2.h
+cguid.h
+unknwn.h
+winnetwk.h
+nddeapi.h
+commdlg.h
+prsht.h
+pbt.h
+shlguid.h
+regstr.h
+cplext.h
+richole.h
+shlobj.h
+objbase.h
+objidl.h
+mmsystem.h
+mcx.h
+oleauto.h
+windowsx.h
+commctrl.h
+richedit.h
+winbase.h
+isguid.h
+intshcut.h
+mciavi.h
+winperf.h
+winuser.h
+winbase.h
+wingdi.h
+winnls.h
+winspool.h
+winreg.h
+winsvc.h
+winresrc.h
+oledlg.h
+olectl.h
+lm.h
+lmat.h
+lmconfig.h
+lmmsg.h
+lmshare.h
+lmuse.h
+lmaccess.h
+lmaudit.h
+lmcons.h
+lmremutl.h
+lmsname.h
+lmuseflg.h
+lmalert.h
+lmbrowsr.h
+lmerr.h
+lmrepl.h
+lmstats.h
+lmwksta.h
+lmapibuf.h
+lmchdev.h
+lmerrlog.h
+lmserver.h
+lmsvc.h
+
+Note that the files above may include files that are not finisihed.

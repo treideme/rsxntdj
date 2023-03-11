@@ -1,0 +1,125 @@
+/* Specs are strings containing lines, each of which (if not blank)
+is made up of a program name, and arguments separated by spaces.
+The program name must be exact and start from root, since no path
+is searched and it is unreliable to depend on the current working directory.
+Redirection of input or output is not supported; the subprograms must
+accept filenames saying what files to read and write.
+
+In addition, the specs can contain %-sequences to substitute variable text
+or for conditional text.  Here is a table of all defined %-sequences.
+Note that spaces are not generated automatically around the results of
+expanding these sequences; therefore, you can concatenate them together
+or with constant text in a single argument.
+
+ %%	substitute one % into the program name or argument.
+ %i     substitute the name of the input file being processed.
+ %b     substitute the basename of the input file being processed.
+	This is the substring up to (and not including) the last period
+	and not including the directory.
+ %g     substitute the temporary-file-name-base.  This is a string chosen
+	once per compilation.  Different temporary file names are made by
+	concatenation of constant strings on the end, as in `%g.s'.
+	%g also has the same effect of %d.
+ %u	like %g, but make the temporary file name unique.
+ %U	returns the last file name generated with %u.
+ %d	marks the argument containing or following the %d as a
+	temporary file name, so that that file will be deleted if CC exits
+	successfully.  Unlike %g, this contributes no text to the argument.
+ %w	marks the argument containing or following the %w as the
+	"output file" of this compilation.  This puts the argument
+	into the sequence of arguments that %o will substitute later.
+ %W{...}
+	like %{...} but mark last argument supplied within
+	as a file to be deleted on failure.
+ %o	substitutes the names of all the output files, with spaces
+	automatically placed around them.  You should write spaces
+	around the %o as well or the results are undefined.
+	%o is for use in the specs for running the linker.
+	Input files whose names have no recognized suffix are not compiled
+	at all, but they are included among the output files, so they will
+	be linked.
+ %O	substitutes the suffix for object files.
+ %p	substitutes the standard macro predefinitions for the
+	current target machine.  Use this when running cpp.
+ %P	like %p, but puts `__' before and after the name of each macro.
+	(Except macros that already have __.)
+	This is for ANSI C.
+ %I	Substitute a -iprefix option made from GCC_EXEC_PREFIX.
+ %s     current argument is the name of a library or startup file of some sort.
+        Search for that file in a standard list of directories
+	and substitute the full name found.
+ %eSTR  Print STR as an error message.  STR is terminated by a newline.
+        Use this when inconsistent options are detected.
+ %x{OPTION}	Accumulate an option for %X.
+ %X	Output the accumulated linker options specified by compilations.
+ %Y	Output the accumulated assembler options specified by compilations.
+ %Z	Output the accumulated preprocessor options specified by compilations.
+ %v1	Substitute the major version number of GCC.
+	(For version 2.5.n, this is 2.)
+ %v2	Substitute the minor version number of GCC.
+	(For version 2.5.n, this is 5.)
+ %a     process ASM_SPEC as a spec.
+        This allows config.h to specify part of the spec for running as.
+ %A	process ASM_FINAL_SPEC as a spec.  A capital A is actually
+	used here.  This can be used to run a post-processor after the
+	assembler has done it's job.
+ %D	Dump out a -L option for each directory in startfile_prefixes.
+	If multilib_dir is set, extra entries are generated with it affixed.
+ %l     process LINK_SPEC as a spec.
+ %L     process LIB_SPEC as a spec.
+ %G     process LIBGCC_SPEC as a spec.
+ %S     process STARTFILE_SPEC as a spec.  A capital S is actually used here.
+ %E     process ENDFILE_SPEC as a spec.  A capital E is actually used here.
+ %c	process SIGNED_CHAR_SPEC as a spec.
+ %C     process CPP_SPEC as a spec.  A capital C is actually used here.
+ %1	process CC1_SPEC as a spec.
+ %2	process CC1PLUS_SPEC as a spec.
+ %|	output "-" if the input for the current command is coming from a pipe.
+ %*	substitute the variable part of a matched option.  (See below.)
+	Note that each comma in the substituted string is replaced by
+	a single space.
+ %{S}   substitutes the -S switch, if that switch was given to CC.
+	If that switch was not specified, this substitutes nothing.
+	Here S is a metasyntactic variable.
+ %{S*}  substitutes all the switches specified to CC whose names start
+	with -S.  This is used for -o, -D, -I, etc; switches that take
+	arguments.  CC considers `-o foo' as being one switch whose
+	name starts with `o'.  %{o*} would substitute this text,
+	including the space; thus, two arguments would be generated.
+ %{S*:X} substitutes X if one or more switches whose names start with -S are
+	specified to CC.  Note that the tail part of the -S option
+	(i.e. the part matched by the `*') will be substituted for each
+	occurrence of %* within X.
+ %{S:X} substitutes X, but only if the -S switch was given to CC.
+ %{!S:X} substitutes X, but only if the -S switch was NOT given to CC.
+ %{|S:X} like %{S:X}, but if no S switch, substitute `-'.
+ %{|!S:X} like %{!S:X}, but if there is an S switch, substitute `-'.
+ %{.S:X} substitutes X, but only if processing a file with suffix S.
+ %{!.S:X} substitutes X, but only if NOT processing a file with suffix S.
+ %(Spec) processes a specification defined in a specs file as *Spec:
+ %[Spec] as above, but put __ around -D arguments
+
+The conditional text X in a %{S:X} or %{!S:X} construct may contain
+other nested % constructs or spaces, or even newlines.  They are
+processed as usual, as described above.
+
+The -O, -f, -m, and -W switches are handled specifically in these
+constructs.  If another value of -O or the negated form of a -f, -m, or
+-W switch is found later in the command line, the earlier switch
+value is ignored, except with {S*} where S is just one letter; this
+passes all matching options.
+
+The character | is used to indicate that a command should be piped to
+the following command, but only if -pipe is specified.
+
+Note that it is built into CC which switches take arguments and which
+do not.  You might think it would be useful to generalize this to
+allow each compiler's spec to say which switches take arguments.  But
+this cannot be done in a consistent fashion.  CC cannot even decide
+which input files have been specified without knowing which switches
+take arguments, and it must know which input files to compile in order
+to tell which compilers to run.
+
+CC also knows implicitly that arguments starting in `-l' are to be
+treated as compiler output files, and passed to the linker in their
+proper position among the other output files.  */

@@ -1,0 +1,11 @@
+/*** resource identifiers for DIBOPEN dialogs. ***/
+#define IDD_DIBOPEN         3000
+#define IDD_DIBOPENT        3001
+#define IDC_STATIC          -1
+#define IDC_PREVIEWCHECK    3010
+#define IDC_CHECKPREVIEW    3010
+#define IDC_EDITWIDTH       3005
+#define IDC_EDITHEIGHT      3006
+#define IDC_EDITSIZE        3007
+#define IDC_EDITCOLORS      3008
+#define IDC_PREVIEW         3009

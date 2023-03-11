@@ -1,0 +1,14 @@
+EXPORTS
+; From dllcplus.o
+
+  ; CTest::CTest(void)
+  "__5CTest"
+
+  ; CTest::~CTest(void)
+  "_$_5CTest"
+
+  ; CTest::SayHello(void)
+  "SayHello__5CTest"
+
+  ; CTest::SayHello(char *)
+  "SayHello__5CTestPc"

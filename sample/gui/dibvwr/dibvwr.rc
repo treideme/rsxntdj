@@ -1,0 +1,111 @@
+/* DIBVWR.RC, resources for DIBVWR
+ *
+ * Written by Alfons Hoogervorst, 1995-1997, proteus@worldaccess.nl         */
+
+#include "compiler.h"
+#include <windows.h>
+#include "dibvwr.h"
+
+
+IDM_MAINMENU MENU
+BEGIN
+ POPUP "&File"
+ BEGIN
+  MENUITEM "&New", CM_FILENEW
+  MENUITEM "&Open...", CM_FILEOPEN
+  MENUITEM "&Save", CM_FILESAVE
+  MENUITEM "Save &as...", CM_FILESAVEAS
+  MENUITEM SEPARATOR
+  MENUITEM "&Print...", CM_FILEPRINT
+  MENUITEM "Page se&tup...", CM_FILEPAGE_SETUP, GRAYED
+  MENUITEM "P&rinter setup...", CM_FILEPRINTER_SETUP, GRAYED
+  MENUITEM SEPARATOR
+  MENUITEM "E&xit", CM_FILEEXIT
+ END
+
+ POPUP "&Edit"
+ BEGIN
+  MENUITEM "&Cut\tCtrl+X", CM_EDITCUT
+  MENUITEM "&Copy\tCtrl+C", CM_EDITCOPY
+  MENUITEM "&Paste\tCtrl+V", CM_EDITPASTE
+ END
+
+ POPUP "&Help"
+ BEGIN
+  MENUITEM "&Index\tF1", CM_HELPINDEX, GRAYED
+  MENUITEM "&Keyboard", CM_HELPKEYBOARD, GRAYED
+  MENUITEM "&Commands", CM_HELPCOMMANDS, GRAYED
+  MENUITEM "&Procedures", CM_HELPPROCEDURES, GRAYED
+  MENUITEM "&Using help", CM_HELPUSING_HELP, GRAYED
+  MENUITEM SEPARATOR
+  MENUITEM "&About...", CM_HELPABOUT
+ END
+
+END
+
+IDA_MAINMENU ACCELERATORS
+BEGIN
+ "^X", CM_EDITCUT, ASCII, NOINVERT
+ "^C", CM_EDITCOPY, ASCII, NOINVERT
+ "^V", CM_EDITPASTE, ASCII, NOINVERT
+END
+
+IDD_ABOUTDIALOG DIALOG MOVEABLE PURE LOADONCALL DISCARDABLE	50, 34, 207, 180
+STYLE DS_MODALFRAME | 0x0004 | WS_CAPTION | WS_SYSMENU | WS_VISIBLE | WS_POPUP
+CAPTION "About dibvwr"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK", IDOK, 	78,91,50,14, 0
+    CTEXT           "dibvwr 1.1 by Alfons Hoogervorst\nInternet E-mail: proteus@worldaccess.nl \\ a.hoogervorst@inter.nl.net", 65535, 	37,6,146,28, SS_LEFT
+    ICON    100, 1000,   12,10,18,20
+    CTEXT           "dibvwr demonstrates how to write a bitmap viewer for Win32. Written and donated to the public domain by Alfons Hoogervorst, 1995-1997.", 65535,  21,40,165,45, SS_LEFT
+    CONTROL         "This ain't no joke", 999, "Static", SS_BLACKFRAME | WS_BORDER, 	57,111,93,47
+END
+
+100 ICON "ico100.ico"
+
+
+999 BITMAP "bmp99.bmp"
+
+STRINGTABLE MOVEABLE PURE LOADONCALL DISCARDABLE
+BEGIN
+    IDS_FILEOPENFILTER,	"Bitmap files|*.bmp;*.dib|"
+    IDS_APPLICATIONNAME,	"dibvwr"
+    IDS_ERR_WRITEFILE,	"Error writing file %s"
+    IDS_ERR_LOADFILE,	"Error loading file %s"
+    IDS_ERR_INVALIDBITMAP,	"File %s does not contain a valid bitmap"
+END
+
+#include "dibfunc.rc"
+#include "dibopen.rc"
+
+/* I can't get this resource compiled with the GNU Resource Compiler */
+#if !defined(_GNUC_CPP)
+VS_VERSION_INFO VERSIONINFO MOVEABLE IMPURE LOADONCALL DISCARDABLE
+FILEVERSION   1,1,0,0
+PRODUCTVERSION    1,1,0,0
+FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
+FILEFLAGS 0
+FILEOS    VOS_DOS_WINDOWS32
+FILETYPE  VFT_APP
+FILESUBTYPE   0
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "CompanyName", "The Programming with Puns Facility\0"
+            VALUE "FileDescription", "\0"
+            VALUE "FileVersion", "\0"
+            VALUE "InternalName", "DIBVWR\0"
+            VALUE "OriginalFilename", "\0"
+            VALUE "ProductName", "DIB Viewer. JPEG viewer pre release\0"
+            VALUE "ProductVersion", "1.1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE	"Translation", 0x0409, 1252
+    END
+END
+#endif /* _GNUC_CPP */

@@ -1,0 +1,11 @@
+/* dibfunc.rc, rc stuff for dibfunc module.
+ *
+ * By Alfons Hoogervorst, 1995-1997, proteus@worldaccess.nl                 */
+
+#ifndef _AHX_DIBFUNC_RC
+#define _AHX_DIBFUNC_RC
+BMP016 BITMAP "bmp016.bmp"
+BMP256 BITMAP "bmp256.bmp"
+BMPGRAY BITMAP "bmpgray.bmp"
+#endif /* !_AHX_DIBFUNC_RC */
+

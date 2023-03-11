@@ -1,0 +1,87 @@
+#include "windows.h"
+#include "bar.h"
+
+IDB_BMP BITMAP MOVEABLE PURE "BAR.BMP"
+IDI_APPICON ICON DISCARDABLE "BAR.ICO"
+
+BAR MENU DISCARDABLE
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New",                        IDM_FILENEW
+        MENUITEM "&Open...",                    IDM_FILEOPEN
+        MENUITEM "&Save",                       IDM_FILESAVE
+        MENUITEM "Save &As...",                 IDM_FILESAVEAS
+        MENUITEM "&Close",                      IDM_FILECLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Print",                      IDM_FILEPRINT
+        MENUITEM "Page Se&tup...",              IDM_FILEPAGESU
+        MENUITEM "P&rint Setup...",             IDM_FILEPRINTSU
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tAlt+BkSp",             IDM_EDITUNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tShift+Del",             IDM_EDITCUT
+        MENUITEM "&Copy\tCtrl+Ins",             IDM_EDITCOPY
+        MENUITEM "&Paste\tShift+Ins",           IDM_EDITPASTE
+        MENUITEM "&Delete\tDel",                IDM_EDITCLEAR
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About...",                   IDM_ABOUT
+    END
+END
+
+BARSDI ACCELERATORS MOVEABLE PURE 
+BEGIN
+    "Q",            IDM_EXIT,               VIRTKEY, CONTROL
+END
+
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_APPNAME             "BAR"
+    IDS_DESCRIPTION         "Test toolbar and statusbar"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_SYSMENU             "Move, size, or close application window"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_FILEMENU            "Create, open, save, or print documents"
+    IDM_FILENEW             "Creates a new document"
+    IDM_FILEOPEN            "Opens an existing document"
+    IDM_FILESAVE            "Saves the active document"
+    IDM_FILESAVEAS          "Saves the active document under a different name"
+    IDM_FILECLOSE           "Closes the active document"
+    IDM_FILEPRINT           "Prints the active document"
+    IDM_FILEPAGESU          "Changes the page setup"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_FILEPRINTSU         "Changes the printer selection or configuration"
+    IDM_EXIT                "Quits this application"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EDITMENU            "Undo, delete, copy, and insert"
+    IDM_EDITUNDO            "Reverses the last action"
+    IDM_EDITCUT             "Cuts the selection and puts it on the clipboard"
+    IDM_EDITCOPY            "Copies the selection and puts it on the clipboard"
+    IDM_EDITPASTE           "Inserts the clipboard contents at the insertion point"
+    IDM_EDITCLEAR           "Removes the selection without putting it on the clipboard"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_HELPMENU            "Get help"
+    IDM_ABOUT               "Displays information about this application"
+END

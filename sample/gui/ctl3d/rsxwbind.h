@@ -1,0 +1,11 @@
+#define ID_AOUT          111
+#define ID_BROWSE_AOUT   131
+#define ID_BROWSE_EXE    132
+#define ID_BROWSE_RSXW   130
+#define ID_EXE           112
+#define ID_HEAP          120
+#define ID_NOTSAVE       201
+#define ID_ONLYSIZE      122
+#define ID_RSXW          110
+#define ID_SAVE          200
+#define ID_STACK         121

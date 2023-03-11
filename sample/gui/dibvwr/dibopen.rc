@@ -1,0 +1,69 @@
+/* dibopen.rc, dialog templates for hooked dialogs with bitmap preview.
+ *
+ * By Alfons Hoogervorst, 1995-1997, proteus@worldaccess.nl                 */
+
+#include "compiler.h"
+#include "dibopen.rh"
+#include <windows.h>
+
+/* 0x0a11fab2 - FIXME. I use include to make the GRC jump to the correct
+ * location. The -i option doesn't seem to work.                            */
+#include "dlgs.h"
+#include <winver.h>
+
+IDD_DIBOPEN DIALOG MOVEABLE PURE LOADONCALL DISCARDABLE	10, 10, 288, 148
+STYLE 0x0004 | DS_CONTROL | WS_CLIPSIBLINGS | WS_VISIBLE | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "", stc32, 	17,6,254,42, SS_LEFT
+    GROUPBOX        "", 65535, 	21,55,245,86
+    CONTROL         "&Preview", IDC_PREVIEWCHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 	31,54,39,10
+    RTEXT           "Width", 65535, 	34,71,35,10, SS_LEFT
+    RTEXT           "Height", 65535, 	41,89,26,9, SS_LEFT
+    RTEXT           "Image size", 65535, 	29,103,40,10, SS_LEFT
+    RTEXT           "Colors", 65535, 	31,121,38,8, SS_LEFT
+    EDITTEXT        IDC_EDITWIDTH, 	72,70,51,12, ES_AUTOHSCROLL | ES_READONLY | ES_LEFT
+    EDITTEXT        IDC_EDITHEIGHT, 	72,87,51,11, ES_AUTOHSCROLL | ES_READONLY | ES_LEFT
+    EDITTEXT        IDC_EDITSIZE, 	72,103,51,11, ES_AUTOHSCROLL | ES_READONLY | ES_LEFT
+    EDITTEXT        IDC_EDITCOLORS, 	72,119,51,11, ES_AUTOHSCROLL | ES_READONLY | ES_LEFT
+    LTEXT           "Text", IDC_PREVIEW, 	136,70,119,62, SS_LEFT
+END
+
+IDD_DIBOPENT DIALOG MOVEABLE PURE LOADONCALL DISCARDABLE	36, 24, 264, 239
+STYLE DS_MODALFRAME | DS_CONTEXTHELP | WS_CAPTION | WS_SYSMENU | WS_POPUP
+CAPTION "Open"
+FONT 8, "Helv"
+BEGIN
+    LTEXT           "File &name:", stc3, 	6,6,76,9, SS_LEFT
+    EDITTEXT        edt1, 	6,16,90,12, ES_AUTOHSCROLL | ES_OEMCONVERT | ES_LEFT
+    LISTBOX         lst1, 	6,32,90,60, LBS_DISABLENOSCROLL | LBS_HASSTRINGS | LBS_SORT | LBS_OWNERDRAWFIXED | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Folders:", 65535, 	110,6,96,9, SS_LEFT
+    LTEXT           "", stc1, 	110,18,96,9, SS_NOPREFIX | SS_LEFT
+    LISTBOX         lst2, 	110,32,92,60, LBS_DISABLENOSCROLL | LBS_HASSTRINGS | LBS_SORT | LBS_OWNERDRAWFIXED | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "List files of &type:", stc2, 	6,104,90,9, SS_LEFT
+    COMBOBOX        cmb1, 	6,114,90,36, CBS_AUTOHSCROLL | CBS_DROPDOWNLIST | WS_VSCROLL | WS_BORDER | WS_TABSTOP
+    LTEXT           "Dri&ves:", stc4, 	110,104,92,9, SS_LEFT
+    COMBOBOX        cmb2, 	110,114,92,68, CBS_AUTOHSCROLL | CBS_HASSTRINGS | CBS_SORT | CBS_OWNERDRAWFIXED | CBS_DROPDOWNLIST | WS_VSCROLL | WS_BORDER | WS_TABSTOP
+    DEFPUSHBUTTON   "OK", IDOK, 	208,6,50,14, WS_GROUP
+    PUSHBUTTON      "Cancel", IDCANCEL, 	208,24,50,14, WS_GROUP
+    PUSHBUTTON      "&Help", psh15, 	208,46,50,14, WS_GROUP
+    CHECKBOX        "&Read only", chx1, 	208,68,50,12, WS_GROUP
+    GROUPBOX        "", IDC_STATIC, 	6,138,251,92, 0
+    CONTROL         "Preview", IDC_PREVIEWCHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 	14,138,39,11
+    LTEXT           "Width", IDC_STATIC, 	23,158,21,10, SS_LEFT
+    EDITTEXT        IDC_EDITWIDTH, 	63,157,45,13, ES_AUTOHSCROLL | ES_READONLY | ES_LEFT
+    LTEXT           "Height", IDC_STATIC, 	23,176,28,9, SS_LEFT
+    EDITTEXT        IDC_EDITHEIGHT, 	63,173,45,13, ES_AUTOHSCROLL | ES_READONLY | ES_LEFT
+    LTEXT           "Image size", IDC_STATIC, 	23,190,35,11, SS_LEFT
+    EDITTEXT        IDC_EDITSIZE, 	63,189,45,13, ES_AUTOHSCROLL | ES_READONLY | ES_LEFT
+    LTEXT           "Colors", IDC_STATIC, 	23,208,25,8, SS_LEFT
+    EDITTEXT        IDC_EDITCOLORS, 	63,205,45,13, ES_AUTOHSCROLL | ES_READONLY | ES_LEFT
+    LTEXT           "", IDC_PREVIEW, 	125,158,112,61, SS_LEFT
+END
+
+
+
+
+
+
+
